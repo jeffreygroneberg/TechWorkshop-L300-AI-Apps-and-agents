@@ -47,12 +47,23 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Debug - Show .env file content (masked)
+        working-directory: src
+        run: |
+          echo "=== .env file exists: $(test -f .env && echo 'YES' || echo 'NO') ==="
+          echo "=== Number of lines in .env: $(wc -l < .env) ==="
+          echo "=== Variables defined (names only): ==="
+          grep -E '^[A-Za-z_][A-Za-z0-9_]*=' .env | cut -d'=' -f1 | head -30
+
       - name: Initialize Interior Designer Agent
         working-directory: src
+        env:
+          PYTHONDONTWRITEBYTECODE: 1
         run: |
           set -a
           source .env
           set +a
+          echo "COSMOS_ENDPOINT is set: $(test -n \"$COSMOS_ENDPOINT\" && echo 'YES' || echo 'NO')"
           python app/agents/interiorDesignAgent_initializer.py
 
       - name: Cleanup .env file
