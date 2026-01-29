@@ -38,8 +38,11 @@ jobs:
           pip install -r src/requirements.txt
 
       - name: Create .env file from secret
+        env:
+          ENV_CONTENT: ${{ secrets.ENV }}
         run: |
-          echo "${{ secrets.ENV }}" > src/.env
+          printf '%s\n' "$ENV_CONTENT" > src/.env
+          echo "Created .env with $(wc -l < src/.env) lines"
         shell: bash
 
       - name: Azure Login
