@@ -47,8 +47,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Initialize Customer Loyalty Agent
-        working-directory: src/app/agents
-        run: python customerLoyaltyAgent_initializer.py
+        working-directory: src
+        run: python app/agents/customerLoyaltyAgent_initializer.py
 
       - name: Cleanup .env file
         if: always()

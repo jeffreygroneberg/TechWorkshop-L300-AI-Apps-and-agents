@@ -46,8 +46,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Initialize Cart Manager Agent
-        working-directory: src/app/agents
-        run: python cartManagerAgent_initializer.py
+        working-directory: src
+        run: python app/agents/cartManagerAgent_initializer.py
 
       - name: Cleanup .env file
         if: always()

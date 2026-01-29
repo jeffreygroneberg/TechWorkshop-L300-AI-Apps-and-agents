@@ -47,8 +47,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Initialize Shopper Agent
-        working-directory: src/app/agents
-        run: python shopperAgent_initializer.py
+        working-directory: src
+        run: python app/agents/shopperAgent_initializer.py
 
       - name: Cleanup .env file
         if: always()

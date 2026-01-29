@@ -47,8 +47,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Initialize Inventory Agent
-        working-directory: src/app/agents
-        run: python inventoryAgent_initializer.py
+        working-directory: src
+        run: python app/agents/inventoryAgent_initializer.py
 
       - name: Cleanup .env file
         if: always()
