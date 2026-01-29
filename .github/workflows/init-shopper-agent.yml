@@ -48,7 +48,11 @@ jobs:
 
       - name: Initialize Shopper Agent
         working-directory: src
-        run: python app/agents/shopperAgent_initializer.py
+        run: |
+          set -a
+          source .env
+          set +a
+          python app/agents/shopperAgent_initializer.py
 
       - name: Cleanup .env file
         if: always()

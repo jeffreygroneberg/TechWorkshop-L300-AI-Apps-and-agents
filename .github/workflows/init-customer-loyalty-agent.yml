@@ -48,7 +48,11 @@ jobs:
 
       - name: Initialize Customer Loyalty Agent
         working-directory: src
-        run: python app/agents/customerLoyaltyAgent_initializer.py
+        run: |
+          set -a
+          source .env
+          set +a
+          python app/agents/customerLoyaltyAgent_initializer.py
 
       - name: Cleanup .env file
         if: always()

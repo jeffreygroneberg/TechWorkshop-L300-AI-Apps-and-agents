@@ -49,7 +49,11 @@ jobs:
 
       - name: Initialize Interior Designer Agent
         working-directory: src
-        run: python app/agents/interiorDesignAgent_initializer.py
+        run: |
+          set -a
+          source .env
+          set +a
+          python app/agents/interiorDesignAgent_initializer.py
 
       - name: Cleanup .env file
         if: always()
